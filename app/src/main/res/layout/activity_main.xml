@@ -6,13 +6,107 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/dummyTurntableRight"
+        android:layout_width="210dp"
+        android:layout_height="210dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:contentDescription="a placeholder image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_help" />
+
+    <ImageView
+        android:id="@+id/dummyTurntableLeft"
+        android:layout_width="210dp"
+        android:layout_height="210dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:contentDescription="a placeholder image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_help" />
+
     <TextView
+        android:id="@+id/songTitleLeft"
+        android:layout_width="220dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:text="no song selected yet"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dummyTurntableLeft" />
+
+    <TextView
+        android:id="@+id/songTitleRight"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        android:text="no song selected yet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dummyTurntableRight" />
+
+    <Button
+        android:id="@+id/playButtonLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="testing.."
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:onClick="leftPlayPressed"
+        android:text="play"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/songTitleLeft" />
 
+    <Button
+        android:id="@+id/pauseButtonLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="leftPausePressed"
+        android:text="pause"
+        app:layout_constraintStart_toEndOf="@+id/playButtonLeft"
+        app:layout_constraintTop_toBottomOf="@+id/songTitleLeft" />
+
+    <Button
+        android:id="@+id/stopButtonLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="leftStopPressed"
+        android:text="stop"
+        app:layout_constraintStart_toEndOf="@+id/pauseButtonLeft"
+        app:layout_constraintTop_toBottomOf="@+id/songTitleLeft" />
+
+    <Button
+        android:id="@+id/playButtonRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="rightPlayPressed"
+        android:text="play"
+        app:layout_constraintEnd_toStartOf="@+id/pauseButtonRight"
+        app:layout_constraintTop_toBottomOf="@+id/songTitleRight" />
+
+    <Button
+        android:id="@+id/pauseButtonRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="rightPausePressed"
+        android:text="pause"
+        app:layout_constraintEnd_toStartOf="@+id/stopButtonRight"
+        app:layout_constraintTop_toBottomOf="@+id/songTitleRight" />
+
+    <Button
+        android:id="@+id/stopButtonRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        android:onClick="rightStopPressed"
+        android:text="stop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/songTitleRight" />
 </androidx.constraintlayout.widget.ConstraintLayout>
