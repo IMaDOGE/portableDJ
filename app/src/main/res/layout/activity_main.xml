@@ -109,4 +109,5 @@
         android:text="stop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/songTitleRight" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
