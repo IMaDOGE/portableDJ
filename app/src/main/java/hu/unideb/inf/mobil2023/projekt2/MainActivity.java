@@ -2,6 +2,7 @@ package hu.unideb.inf.mobil2023.projekt2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
@@ -77,5 +78,12 @@ public class MainActivity extends AppCompatActivity {
         // remove song completely
 
         titleRight.setText("stopped");
+    }
+
+    public void openLeftFileBrowser(View view)
+    {
+        Intent intent = new Intent(this, FileListActivity.class);
+
+        startActivity(intent);
     }
 }
