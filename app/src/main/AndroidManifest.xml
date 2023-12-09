@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".FileListActivity"
+            android:name=".FileManager.FileListActivity"
             android:label="File List Activity">
         </activity>
     </application>
