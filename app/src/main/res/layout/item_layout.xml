@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/fileListItemTextView"
-        android:layout_width="180dp"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
@@ -23,8 +23,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
         android:onClick="addToLeftPlayer"
         android:text="Left"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/addToRight"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,8 +36,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
         android:onClick="addToRightPlayer"
         android:text="Right"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

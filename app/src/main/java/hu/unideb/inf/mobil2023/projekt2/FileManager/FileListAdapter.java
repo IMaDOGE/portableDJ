@@ -1,8 +1,10 @@
 package hu.unideb.inf.mobil2023.projekt2.FileManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -48,13 +50,32 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.MyView
     public static class MyViewHolder extends RecyclerView.ViewHolder
     {
         TextView fileNameTextView;
+        Button leftButton;
+        Button rightButton;
 
         public MyViewHolder(View FileListItemView)
         {
             super(FileListItemView);
 
             MyViewHolder.this.fileNameTextView = FileListItemView.findViewById(R.id.fileListItemTextView);
-        }
+            MyViewHolder.this.leftButton = FileListItemView.findViewById(R.id.addToLeft);
+            MyViewHolder.this.rightButton = FileListItemView.findViewById(R.id.addToRight);
 
+            leftButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String s = fileNameTextView.getText().toString();
+                    Log.i("# testing add button", "Left added! Text: " + s);
+                }
+            });
+
+            rightButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String s = fileNameTextView.getText().toString();
+                    Log.i("# testing add button", "Right added! Text: " + s);
+                }
+            });
+        }
     }
 }
