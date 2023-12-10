@@ -1,7 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Portable DJ</string>
     <string name="paused_player">paused</string>
-    <string name="started_player">"playing"</string>
+    <string name="started_player">"playing: "</string>
     <string name="stopped_player">stopped</string>
     <string name="default_title">no song selected yet</string>
     <string name="play_button_text">play</string>

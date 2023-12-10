@@ -8,13 +8,11 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.util.Log;
 
+import java.util.Objects;
+
 public class MusicPlayer
 {
-    private Context context;
     private final AssetManager assetManager;
-    private AssetFileDescriptor assetFileDescriptor;
-    private Handler handler;
-    private HandlerThread handlerThread;
     private final Object lock = new Object();
     private MediaPlayer musicPlayer;
     private boolean isPlaying = false;
@@ -22,7 +20,6 @@ public class MusicPlayer
     {
         Log.i("Mplayer", "creating new music player instance");
 
-        this.context = context;
         this.assetManager = context.getAssets();
     }
 
@@ -41,7 +38,7 @@ public class MusicPlayer
 
         try
         {
-            assetFileDescriptor = assetManager.openFd(fileName);
+            AssetFileDescriptor assetFileDescriptor = assetManager.openFd(fileName);
             musicPlayer.setDataSource(assetFileDescriptor.getFileDescriptor(), assetFileDescriptor.getStartOffset(), assetFileDescriptor.getLength());
             Log.i("Mplayer", "requested song successfully loaded");
         }
@@ -49,15 +46,15 @@ public class MusicPlayer
         catch (Exception e)
         {
             Log.e("MPlayer E", "error while trying to load song");
-            Log.e("MPlayer E", e.getMessage());
+            Log.e("MPlayer E", Objects.requireNonNull(e.getMessage()));
             throw new RuntimeException(e);
         }
 
         Log.i("Mplayer", "initializing new thread");
 
-        this.handlerThread = new HandlerThread("BackgroundThread");
-        this.handlerThread.start();
-        this.handler = new Handler(handlerThread.getLooper());
+        HandlerThread handlerThread = new HandlerThread("BackgroundThread");
+        handlerThread.start();
+        Handler handler = new Handler(handlerThread.getLooper());
 
         handler.post(new Runnable() {
             @Override
@@ -79,7 +76,7 @@ public class MusicPlayer
                     catch (Exception e)
                     {
                         Log.e("MPlayer E", "error while trying to play song");
-                        Log.e("MPlayer E", e.getMessage());
+                        Log.e("MPlayer E", Objects.requireNonNull(e.getMessage()));
                         throw new RuntimeException(e);
                     }
                 }
@@ -95,7 +92,7 @@ public class MusicPlayer
                     catch (Exception e)
                     {
                         Log.e("MPlayer E", "error while trying to replay song");
-                        Log.e("MPlayer E", e.getMessage());
+                        Log.e("MPlayer E", Objects.requireNonNull(e.getMessage()));
                         throw new RuntimeException(e);
                     }
                 }
@@ -115,7 +112,7 @@ public class MusicPlayer
         catch(Exception e)
         {
             Log.e("MPlayer E", "error while trying to pause song");
-            Log.e("MPlayer E", e.getMessage());
+            Log.e("MPlayer E", Objects.requireNonNull(e.getMessage()));
             throw new RuntimeException();
         }
     }
@@ -139,7 +136,7 @@ public class MusicPlayer
         catch (Exception e)
         {
             Log.e("MPlayer E", "error while trying to stop song");
-            Log.e("MPlayer E", e.getMessage());
+            Log.e("MPlayer E", Objects.requireNonNull(e.getMessage()));
             throw new RuntimeException();
         }
     }

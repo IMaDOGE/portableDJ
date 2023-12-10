@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/dummyTurntableRight"
-        android:layout_width="210dp"
-        android:layout_height="210dp"
+        android:layout_width="190dp"
+        android:layout_height="190dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="40dp"
         android:contentDescription="a placeholder image"
@@ -19,8 +19,8 @@
 
     <ImageView
         android:id="@+id/dummyTurntableLeft"
-        android:layout_width="210dp"
-        android:layout_height="210dp"
+        android:layout_width="190dp"
+        android:layout_height="190dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="10dp"
         android:contentDescription="a placeholder image"
@@ -34,7 +34,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="10dp"
-        android:text="no song selected yet"
+        android:text="@string/default_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dummyTurntableLeft" />
 
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="40dp"
-        android:text="no song selected yet"
+        android:text="@string/default_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dummyTurntableRight" />
 
@@ -55,7 +55,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="10dp"
         android:onClick="leftPlayPressed"
-        android:text="play"
+        android:text="@string/play_button_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/songTitleLeft" />
 
@@ -63,9 +63,10 @@
         android:id="@+id/pauseButtonLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:onClick="leftPausePressed"
-        android:text="pause"
+        android:text="@string/pause_button_text"
         app:layout_constraintStart_toEndOf="@+id/playButtonLeft"
         app:layout_constraintTop_toBottomOf="@+id/songTitleLeft" />
 
@@ -73,9 +74,10 @@
         android:id="@+id/stopButtonLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:onClick="leftStopPressed"
-        android:text="stop"
+        android:text="@string/stop_button_text"
         app:layout_constraintStart_toEndOf="@+id/pauseButtonLeft"
         app:layout_constraintTop_toBottomOf="@+id/songTitleLeft" />
 
@@ -84,8 +86,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
         android:onClick="rightPlayPressed"
-        android:text="play"
+        android:text="@string/play_button_text"
         app:layout_constraintEnd_toStartOf="@+id/pauseButtonRight"
         app:layout_constraintTop_toBottomOf="@+id/songTitleRight" />
 
@@ -94,8 +97,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
         android:onClick="rightPausePressed"
-        android:text="pause"
+        android:text="@string/pause_button_text"
         app:layout_constraintEnd_toStartOf="@+id/stopButtonRight"
         app:layout_constraintTop_toBottomOf="@+id/songTitleRight" />
 
@@ -106,7 +110,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="40dp"
         android:onClick="rightStopPressed"
-        android:text="stop"
+        android:text="@string/pause_button_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/songTitleRight" />
 
@@ -117,7 +121,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="5dp"
         android:onClick="openLeftFileBrowser"
-        android:text="browse"
+        android:text="@string/file_browser_button_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/playButtonLeft" />
 

@@ -27,14 +27,4 @@ public class FileList
     {
         return this.fileList;
     }
-
-    //String fileName;
-/*
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }*/
 }
