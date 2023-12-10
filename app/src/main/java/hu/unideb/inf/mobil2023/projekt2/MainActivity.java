@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,10 +15,12 @@ import hu.unideb.inf.mobil2023.projekt2.FileManager.FileListActivity;
 public class MainActivity extends AppCompatActivity {
     private String filePath;
     private final String testFileName = "test.mp3";
+    private AssetManager assetManager;
 
-    private final MusicPlayer musicPlayerLeft = new MusicPlayer();
-    private final MusicPlayer musicPlayerRight = new MusicPlayer();
 
+    // private final MusicPlayer musicPlayerRight = new MusicPlayer(this);
+
+    private MusicPlayer musicPlayerLeft;
     private TextView titleLeft;
     private TextView titleRight;
 
@@ -29,8 +32,11 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); // force landscape mode
         setContentView(R.layout.activity_main);
 
-        filePath = this.getFilesDir().getParent();
+        musicPlayerLeft = new MusicPlayer(this);
 
+        //musicPlayerLeft.playThisSong("test");
+
+        filePath = this.getFilesDir().getParent();
 
         titleLeft = findViewById(R.id.songTitleLeft);
 
@@ -41,10 +47,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void leftPlayPressed(View view)
     {
-        musicPlayerLeft.playThisSong(filePath + testFileName);
-        titleRight.setText("playing");
+        String test = "song.mp3";
+        titleLeft.setText("playing: "+test);
 
-        titleLeft.setText(testFileName);
+        musicPlayerLeft.playThisSong(test);
     }
 
     public void leftPausePressed(View view)
