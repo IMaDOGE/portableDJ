@@ -11,6 +11,11 @@ public class FileList
     {
         fileList = new ArrayList<>();
 
+        fileList.add("Dire Straits - 01. So Far Away.mp3");
+        fileList.add("Dire Straits - 02. Money For Nothing.mp3");
+        fileList.add("Dire Straits - 03. Walk Of Life.mp3");
+        fileList.add("Dire Straits - 04. Your Latest Trick.mp3");
+
         // testing
         for(int i = 0; i < 10; i++)
         {

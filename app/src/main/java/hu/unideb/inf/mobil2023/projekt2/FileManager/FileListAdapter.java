@@ -18,6 +18,18 @@ import hu.unideb.inf.mobil2023.projekt2.R;
 public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.MyViewHolder>
 {
     private List<String> fileList;
+    private static String leftSongPlaying = "none";
+    private static String rightSongPlaying = "none";
+
+    public static String getLeftSongPlaying()
+    {
+        return leftSongPlaying;
+    }
+
+    public static String getRightSongPlaying()
+    {
+        return rightSongPlaying;
+    }
 
     public void setFileList(List<String> files)
     {
@@ -61,19 +73,23 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.MyView
             MyViewHolder.this.leftButton = FileListItemView.findViewById(R.id.addToLeft);
             MyViewHolder.this.rightButton = FileListItemView.findViewById(R.id.addToRight);
 
-            leftButton.setOnClickListener(new View.OnClickListener() {
+            leftButton.setOnClickListener(new View.OnClickListener()
+            {
                 @Override
                 public void onClick(View v) {
                     String s = fileNameTextView.getText().toString();
-                    Log.i("# testing add button", "Left added! Text: " + s);
+                    leftSongPlaying = s;
+                    Log.i("FLAdapter", "The following song title was sent to the left side: " + s);
                 }
             });
 
-            rightButton.setOnClickListener(new View.OnClickListener() {
+            rightButton.setOnClickListener(new View.OnClickListener()
+            {
                 @Override
                 public void onClick(View v) {
                     String s = fileNameTextView.getText().toString();
-                    Log.i("# testing add button", "Right added! Text: " + s);
+                    rightSongPlaying = s;
+                    Log.i("FLAdapter", "The following song title was sent to the right side: " + s);
                 }
             });
         }
