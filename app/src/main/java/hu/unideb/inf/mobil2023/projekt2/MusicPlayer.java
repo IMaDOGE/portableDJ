@@ -30,11 +30,9 @@ public class MusicPlayer
     {
         float musicVolume = (float) value / 100;
 
-        Log.i("VOLTEST", "val: " + musicVolume);
+        // Log.i("VOLTEST", "val: " + musicVolume);
 
         musicPlayer.setVolume(musicVolume, musicVolume);
-
-
     }
 
     public void playThisSong(String fileName)

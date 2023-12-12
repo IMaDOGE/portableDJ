@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity
     private TextView titleLeft;
     private TextView titleRight;
     private SeekBar volumeControl;
+    private final int SEEKBAR_SNAP_SENSITIVITY = 8;
 
     private boolean leftPaused = false;
     private boolean rightPaused = false;
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity
 
         volumeControl = findViewById(R.id.volumeSeekBar);
 
+        volumeControl.setEnabled(false);
+
         volumeControl.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
         {
             @Override
@@ -55,10 +58,6 @@ public class MainActivity extends AppCompatActivity
                 {
                     musicPlayerRight.setMusicVolume(progress);
                 }
-
-                Log.i("VBar_testing","LeftVal: " + (100-progress));
-                Log.i("VBar_testing","RightVal: " + progress);
-
             }
 
             @Override
@@ -68,25 +67,30 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onStopTrackingTouch(SeekBar seekBar)
             {
-                if (Math.abs(seekBar.getProgress() - 50) <= 5)
+                if (Math.abs(seekBar.getProgress() - 50) <= SEEKBAR_SNAP_SENSITIVITY)
                 {
                     volumeControl.setProgress(50);
 
                     Log.i("VBar","Snapped to middle position.");
                 }
 
-                if(seekBar.getProgress() < 5)
+                else if(seekBar.getProgress() < SEEKBAR_SNAP_SENSITIVITY)
                 {
                     volumeControl.setProgress(0);
 
                     Log.i("VBar","Snapped to left position.");
                 }
 
-                if(seekBar.getProgress() > 95)
+                else if(seekBar.getProgress() > (100 - SEEKBAR_SNAP_SENSITIVITY))
                 {
                     volumeControl.setProgress(100);
 
                     Log.i("VBar","Snapped to right position.");
+                }
+
+                else
+                {
+                    Log.i("VBar", "Current position is: " + seekBar.getProgress());
                 }
             }
         });
@@ -98,6 +102,8 @@ public class MainActivity extends AppCompatActivity
 
     public void leftPlayPressed(View view)
     {
+        volumeControl.setEnabled(true);
+
         if (leftPaused)
         {
             return;
@@ -121,6 +127,8 @@ public class MainActivity extends AppCompatActivity
 
     public void rightPlayPressed(View view)
     {
+        volumeControl.setEnabled(true);
+
         if (rightPaused)
         {
             return;
@@ -153,6 +161,11 @@ public class MainActivity extends AppCompatActivity
                 button.setText(R.string.resume_button_text);
 
                 leftPaused = true;
+
+                if (!isPlayingRight)
+                {
+                    volumeControl.setEnabled(false);
+                }
             }
 
             else
@@ -160,11 +173,13 @@ public class MainActivity extends AppCompatActivity
                 button.setText(R.string.pause_button_text);
 
                 leftPaused = false;
+
+                volumeControl.setEnabled(true);
             }
         }
-
         musicPlayerLeft.pauseThisSong();
     }
+
 
     public void rightPausePressed(View view)
     {
@@ -177,6 +192,11 @@ public class MainActivity extends AppCompatActivity
                 button.setText(R.string.resume_button_text);
 
                 rightPaused = true;
+
+                if (!isPlayingLeft)
+                {
+                    volumeControl.setEnabled(false);
+                }
             }
 
             else
@@ -184,9 +204,10 @@ public class MainActivity extends AppCompatActivity
                 button.setText(R.string.pause_button_text);
 
                 rightPaused = false;
+
+                volumeControl.setEnabled(true);
             }
         }
-
         musicPlayerRight.pauseThisSong();
     }
 
@@ -197,6 +218,13 @@ public class MainActivity extends AppCompatActivity
         titleLeft.setText(R.string.stopped_player);
 
         isPlayingLeft = false;
+
+        leftPaused = false;
+
+        if (!isPlayingRight)
+        {
+            volumeControl.setEnabled(false);
+        }
     }
 
     public void rightStopPressed(View view)
@@ -206,6 +234,13 @@ public class MainActivity extends AppCompatActivity
         titleRight.setText(R.string.stopped_player);
 
         isPlayingRight = false;
+
+        rightPaused = false;
+
+        if (!isPlayingLeft)
+        {
+            volumeControl.setEnabled(false);
+        }
     }
 
     public void openLeftFileBrowser(View view)
