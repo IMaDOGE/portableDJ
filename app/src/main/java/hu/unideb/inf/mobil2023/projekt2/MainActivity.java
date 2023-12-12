@@ -2,15 +2,19 @@ package hu.unideb.inf.mobil2023.projekt2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import hu.unideb.inf.mobil2023.projekt2.FileManager.FileList;
 import hu.unideb.inf.mobil2023.projekt2.FileManager.FileListActivity;
 import hu.unideb.inf.mobil2023.projekt2.FileManager.FileListAdapter;
 
@@ -18,8 +22,11 @@ public class MainActivity extends AppCompatActivity
 {
     private MusicPlayer musicPlayerLeft;
     private MusicPlayer musicPlayerRight;
+    private MusicPlayer effectPlayer;
     private TextView titleLeft;
     private TextView titleRight;
+    private ImageView turntableLeft;
+    private ImageView turntableRight;
     private SeekBar volumeControl;
     private final int SEEKBAR_SNAP_SENSITIVITY = 8;
 
@@ -28,6 +35,7 @@ public class MainActivity extends AppCompatActivity
     private boolean isPlayingLeft = false;
     private boolean isPlayingRight = false;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,10 +44,12 @@ public class MainActivity extends AppCompatActivity
 
         musicPlayerLeft = new MusicPlayer(this);
         musicPlayerRight = new MusicPlayer(this);
+        effectPlayer = new MusicPlayer(this);
 
         titleLeft = findViewById(R.id.songTitleLeft);
         titleRight = findViewById(R.id.songTitleRight);
-
+        turntableLeft = findViewById(R.id.turntableLeft);
+        turntableRight = findViewById(R.id.turntableRight);
         volumeControl = findViewById(R.id.volumeSeekBar);
 
         volumeControl.setEnabled(false);
@@ -95,6 +105,74 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        turntableLeft.setOnTouchListener((v, event) ->
+                {
+                    if(isPlayingLeft)
+                    {
+                        switch (event.getAction())
+                        {
+                            case (MotionEvent.ACTION_DOWN):
+                            {
+                                Log.i("TTableLeft", "holding left");
+
+                                musicPlayerLeft.pauseThisSong();
+
+                                String effectName = FileList.getRandomScratchSFX();
+
+                                Log.i("#EFECTNAME", ""+effectName);
+
+                                String s = "Antidote Audio - FX Scratch 02.wav";
+
+                                Log.i("#EFECTNAME", ""+s);
+
+                                Log.i("#EFFECTNAME", ""+ effectName.equals(s));
+
+                                effectPlayer.playThisSong(effectName);
+
+                                return true;
+                            }
+                            case (MotionEvent.ACTION_UP):
+                            {
+                                Log.i("TTableLeft", "released left");
+
+                                musicPlayerLeft.pauseThisSong();
+
+                                effectPlayer.stopThisSong();
+
+                                return true;
+                            }
+                        }
+                    }
+                    return false;
+                }
+
+
+
+
+        );
+        /*turntableLeft.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event)
+            {
+                switch (event.getAction())
+                {
+                    case (MotionEvent.ACTION_DOWN):
+                    {
+                        Log.i("turntabletest", "started to hold the image");
+
+                        return true;
+                    }
+                    case (MotionEvent.ACTION_UP):
+                    {
+                        Log.i("turntabletest", "stopped holding");
+
+                        return true;
+                    }
+                    default:
+                        return false;
+                }
+            }
+        });*/
 
 
         // FileManager FManager = new FileManager(this);

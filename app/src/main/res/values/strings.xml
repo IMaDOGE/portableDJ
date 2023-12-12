@@ -9,4 +9,6 @@
     <string name="resume_button_text">resume</string>
     <string name="stop_button_text">stop</string>
     <string name="file_browser_button_text">browse</string>
+    <string name="left_turntable_description">left turntable</string>
+    <string name="right_turntable_description">right turntable</string>
 </resources>
