@@ -16,6 +16,7 @@ public class MusicPlayer
     private final Object lock = new Object();
     private MediaPlayer musicPlayer;
     private boolean isPlaying = false;
+    private boolean isPaused = false;
     public MusicPlayer(Context context)
     {
         Log.i("Mplayer", "creating new music player instance");
@@ -25,12 +26,25 @@ public class MusicPlayer
 
     public void playThisSong(String fileName)
     {
+        if (isPaused)
+        {
+            Log.i("Mplayer", "resuming song");
+
+            isPaused = false;
+
+            musicPlayer.start();
+
+            return;
+        }
+
         if (isPlaying)
         {
             Log.i("Mplayer", "music player already running");
 
             return;
         }
+
+
 
         Log.i("Mplayer", "starting music player");
 
@@ -103,17 +117,38 @@ public class MusicPlayer
 
     public void pauseThisSong()
     {
-        try
+        if (!isPlaying)
         {
-            Log.i("Mplayer", "pausing song");
-            musicPlayer.pause();
+            Log.i("Mplayer", "player empty, nothing to pause");
+
+            return;
         }
 
-        catch(Exception e)
+        if (!isPaused)
         {
-            Log.e("MPlayer E", "error while trying to pause song");
-            Log.e("MPlayer E", Objects.requireNonNull(e.getMessage()));
-            throw new RuntimeException();
+            try
+            {
+                Log.i("Mplayer", "pausing song");
+
+                musicPlayer.pause();
+
+                isPaused = true;
+            }
+
+            catch(Exception e)
+            {
+                Log.e("MPlayer E", "error while trying to pause song");
+                Log.e("MPlayer E", Objects.requireNonNull(e.getMessage()));
+                throw new RuntimeException();
+            }
+        }
+        else
+        {
+            Log.i("Mplayer", "resuming song");
+
+            musicPlayer.start();
+
+            isPaused = false;
         }
     }
 
