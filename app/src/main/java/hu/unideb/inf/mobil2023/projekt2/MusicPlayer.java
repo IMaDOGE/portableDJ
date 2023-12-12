@@ -17,11 +17,24 @@ public class MusicPlayer
     private MediaPlayer musicPlayer;
     private boolean isPlaying = false;
     private boolean isPaused = false;
+
+
     public MusicPlayer(Context context)
     {
         Log.i("Mplayer", "creating new music player instance");
 
         this.assetManager = context.getAssets();
+    }
+
+    public void setMusicVolume(int value)
+    {
+        float musicVolume = (float) value / 100;
+
+        Log.i("VOLTEST", "val: " + musicVolume);
+
+        musicPlayer.setVolume(musicVolume, musicVolume);
+
+
     }
 
     public void playThisSong(String fileName)

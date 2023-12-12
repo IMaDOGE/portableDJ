@@ -46,7 +46,19 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
             {
-                Log.i("VBar_testing","val: " + progress);
+                if (isPlayingLeft)
+                {
+                    musicPlayerLeft.setMusicVolume(100-progress);
+                }
+
+                if (isPlayingRight)
+                {
+                    musicPlayerRight.setMusicVolume(progress);
+                }
+
+                Log.i("VBar_testing","LeftVal: " + (100-progress));
+                Log.i("VBar_testing","RightVal: " + progress);
+
             }
 
             @Override
@@ -58,9 +70,23 @@ public class MainActivity extends AppCompatActivity
             {
                 if (Math.abs(seekBar.getProgress() - 50) <= 5)
                 {
-                    Log.i("VBar","Snapped to middle position.");
-
                     volumeControl.setProgress(50);
+
+                    Log.i("VBar","Snapped to middle position.");
+                }
+
+                if(seekBar.getProgress() < 5)
+                {
+                    volumeControl.setProgress(0);
+
+                    Log.i("VBar","Snapped to left position.");
+                }
+
+                if(seekBar.getProgress() > 95)
+                {
+                    volumeControl.setProgress(100);
+
+                    Log.i("VBar","Snapped to right position.");
                 }
             }
         });
