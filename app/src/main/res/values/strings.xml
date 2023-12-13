@@ -11,4 +11,11 @@
     <string name="file_browser_button_text">browse</string>
     <string name="left_turntable_description">left turntable</string>
     <string name="right_turntable_description">right turntable</string>
+    <string name="add_left_button_text">Left</string>
+    <string name="add_right_button_text">Right</string>
+    <string name="add_title_default_text">title</string>
+    <string name="exit_button_text">Go back</string>
+    <string name="filelist_title">Title:</string>
+    <string name="filelist_choose_songs">Choose songs</string>
+    <string name="filelist_add_to">Add to:</string>
 </resources>

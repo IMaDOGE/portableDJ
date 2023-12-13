@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/grey_for_background"
     android:maxHeight="200dp">
 
     <TextView
@@ -12,7 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:text="title"
+        android:text="@string/add_title_default_text"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,8 +26,9 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/grey_for_buttons"
         android:onClick="addToLeftPlayer"
-        android:text="Left"
+        android:text="@string/add_left_button_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/addToRight"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,8 +40,9 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/grey_for_buttons"
         android:onClick="addToRightPlayer"
-        android:text="Right"
+        android:text="@string/add_right_button_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

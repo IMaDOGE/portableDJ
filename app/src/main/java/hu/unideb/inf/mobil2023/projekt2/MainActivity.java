@@ -119,13 +119,7 @@ public class MainActivity extends AppCompatActivity
 
                                 String effectName = FileList.getRandomScratchSFX();
 
-                                Log.i("#EFECTNAME", ""+effectName);
-
-                                String s = "Antidote Audio - FX Scratch 02.wav";
-
-                                Log.i("#EFECTNAME", ""+s);
-
-                                Log.i("#EFFECTNAME", ""+ effectName.equals(s));
+                                Log.i("#TTableLeft", "effect: " + effectName);
 
                                 effectPlayer.playThisSong(effectName);
 
@@ -145,11 +139,8 @@ public class MainActivity extends AppCompatActivity
                     }
                     return false;
                 }
-
-
-
-
         );
+
         /*turntableLeft.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event)
