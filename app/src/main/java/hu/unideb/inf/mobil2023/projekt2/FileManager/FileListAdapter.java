@@ -62,6 +62,7 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.MyView
     public static class MyViewHolder extends RecyclerView.ViewHolder
     {
         TextView fileNameTextView;
+        TextView statusTextView;
         Button leftButton;
         Button rightButton;
 
@@ -70,6 +71,7 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.MyView
             super(FileListItemView);
 
             MyViewHolder.this.fileNameTextView = FileListItemView.findViewById(R.id.fileListItemTextView);
+            MyViewHolder.this.statusTextView = FileListItemView.findViewById(R.id.statusTextView);
             MyViewHolder.this.leftButton = FileListItemView.findViewById(R.id.addToLeft);
             MyViewHolder.this.rightButton = FileListItemView.findViewById(R.id.addToRight);
 
@@ -80,6 +82,7 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.MyView
                     String s = fileNameTextView.getText().toString();
                     leftSongPlaying = s;
                     Log.i("FLAdapter", "The following song title was sent to the left side: " + s);
+                    statusTextView.setText(R.string.filelist_added_to_left);
                 }
             });
 
@@ -90,6 +93,7 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.MyView
                     String s = fileNameTextView.getText().toString();
                     rightSongPlaying = s;
                     Log.i("FLAdapter", "The following song title was sent to the right side: " + s);
+                    statusTextView.setText(R.string.filelist_added_to_right);
                 }
             });
         }

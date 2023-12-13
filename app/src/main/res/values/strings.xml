@@ -18,4 +18,6 @@
     <string name="filelist_title">Title:</string>
     <string name="filelist_choose_songs">Choose songs</string>
     <string name="filelist_add_to">Add to:</string>
+    <string name="filelist_added_to_left">added to left!</string>
+    <string name="filelist_added_to_right">added to right!</string>
 </resources>

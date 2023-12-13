@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/fileListItemTextView"
-        android:layout_width="160dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
@@ -45,6 +45,16 @@
         android:text="@string/add_right_button_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/statusTextView"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="10dp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/addToLeft"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

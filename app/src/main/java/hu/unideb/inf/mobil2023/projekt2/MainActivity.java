@@ -3,6 +3,7 @@ package hu.unideb.inf.mobil2023.projekt2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -28,7 +29,8 @@ public class MainActivity extends AppCompatActivity
     private ImageView turntableLeft;
     private ImageView turntableRight;
     private SeekBar volumeControl;
-    private final int SEEKBAR_SNAP_SENSITIVITY = 8;
+    private final int SEEKBAR_SNAP_SENSITIVITY_SIDES = 8;
+    private final int SEEKBAR_SNAP_SENSITIVITY_MIDDLE = 14;
 
     private boolean leftPaused = false;
     private boolean rightPaused = false;
@@ -77,21 +79,21 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onStopTrackingTouch(SeekBar seekBar)
             {
-                if (Math.abs(seekBar.getProgress() - 50) <= SEEKBAR_SNAP_SENSITIVITY)
+                if (Math.abs(seekBar.getProgress() - 50) <= SEEKBAR_SNAP_SENSITIVITY_MIDDLE)
                 {
                     volumeControl.setProgress(50);
 
                     Log.i("VBar","Snapped to middle position.");
                 }
 
-                else if(seekBar.getProgress() < SEEKBAR_SNAP_SENSITIVITY)
+                else if(seekBar.getProgress() < SEEKBAR_SNAP_SENSITIVITY_SIDES)
                 {
                     volumeControl.setProgress(0);
 
                     Log.i("VBar","Snapped to left position.");
                 }
 
-                else if(seekBar.getProgress() > (100 - SEEKBAR_SNAP_SENSITIVITY))
+                else if(seekBar.getProgress() > (100 - SEEKBAR_SNAP_SENSITIVITY_SIDES))
                 {
                     volumeControl.setProgress(100);
 
@@ -107,7 +109,7 @@ public class MainActivity extends AppCompatActivity
 
         turntableLeft.setOnTouchListener((v, event) ->
                 {
-                    if(isPlayingLeft)
+                    if(isPlayingLeft && !leftPaused)
                     {
                         switch (event.getAction())
                         {
@@ -119,7 +121,7 @@ public class MainActivity extends AppCompatActivity
 
                                 String effectName = FileList.getRandomScratchSFX();
 
-                                Log.i("#TTableLeft", "effect: " + effectName);
+                                Log.i("TTableLeft", "effect: " + effectName);
 
                                 effectPlayer.playThisSong(effectName);
 
@@ -130,6 +132,42 @@ public class MainActivity extends AppCompatActivity
                                 Log.i("TTableLeft", "released left");
 
                                 musicPlayerLeft.pauseThisSong();
+
+                                effectPlayer.stopThisSong();
+
+                                return true;
+                            }
+                        }
+                    }
+                    return false;
+                }
+        );
+
+        turntableRight.setOnTouchListener((v, event) ->
+                {
+                    if(isPlayingRight && !rightPaused)
+                    {
+                        switch (event.getAction())
+                        {
+                            case (MotionEvent.ACTION_DOWN):
+                            {
+                                Log.i("TTableRight", "holding right");
+
+                                musicPlayerRight.pauseThisSong();
+
+                                String effectName = FileList.getRandomScratchSFX();
+
+                                Log.i("TTableRight", "effect: " + effectName);
+
+                                effectPlayer.playThisSong(effectName);
+
+                                return true;
+                            }
+                            case (MotionEvent.ACTION_UP):
+                            {
+                                Log.i("TTableRight", "released right");
+
+                                musicPlayerRight.pauseThisSong();
 
                                 effectPlayer.stopThisSong();
 

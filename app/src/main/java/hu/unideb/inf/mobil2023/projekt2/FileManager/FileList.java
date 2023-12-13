@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class FileList
 {
-    public List<String> fileList;
+    public static List<String> fileList;
     private static List<String> scratchSFX;
 
     private static Random rtd;
@@ -18,11 +18,17 @@ public class FileList
 
         rtd = new Random();
 
-        fileList.add("Dire Straits - 01. So Far Away.mp3");
-        fileList.add("Dire Straits - 02. Money For Nothing.mp3");
-        fileList.add("Dire Straits - 03. Walk Of Life.mp3");
-        fileList.add("Dire Straits - 04. Your Latest Trick.mp3");
-        fileList.add("Antidote Audio - FX Scratch 13.wav");
+        fileList.add("Dire Straits - 01 So Far Away.mp3");
+        fileList.add("Dire Straits - 02 Money For Nothing.mp3");
+        fileList.add("Dire Straits - 03 Walk Of Life.mp3");
+        fileList.add("Dire Straits - 04 Your Latest Trick.mp3");
+        fileList.add("Dire Straits - 05 Why Worry.mp3");
+        fileList.add("Dire Straits - 06 Ride Across The River.mp3");
+        fileList.add("Dire Straits - 07 The Man's Too Strong.mp3");
+        fileList.add("Dire Straits - 08 One World.mp3");
+        fileList.add("Dire Straits - 09 Brothers In Arms.mp3");
+
+        fileList.add("song.mp3");
 
         scratchSFX.add("Antidote Audio - FX Scratch 02.wav");
         scratchSFX.add("Antidote Audio - FX Scratch 06.wav");
@@ -31,12 +37,6 @@ public class FileList
         scratchSFX.add("Antidote Audio - FX Scratch 17.wav");
         scratchSFX.add("Antidote Audio - FX Scratch 18.wav");
         scratchSFX.add("Antidote Audio - Vocal Scratch 02.wav");
-
-        // testing
-        for(int i = 0; i < 10; i++)
-        {
-            addElement("testing.. " + i);
-        }
     }
 
     public static String getRandomScratchSFX()
@@ -48,13 +48,8 @@ public class FileList
         return scratchSFX.get(n);
     }
 
-    public void addElement(String s)
+    public static List<String> getFileList()
     {
-        this.fileList.add(s);
-    }
-
-    public List<String> getFileList()
-    {
-        return this.fileList;
+        return fileList;
     }
 }

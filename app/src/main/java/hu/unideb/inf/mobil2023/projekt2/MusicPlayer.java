@@ -30,8 +30,6 @@ public class MusicPlayer
     {
         float musicVolume = (float) value / 100;
 
-        // Log.i("VOLTEST", "val: " + musicVolume);
-
         musicPlayer.setVolume(musicVolume, musicVolume);
     }
 
@@ -54,8 +52,6 @@ public class MusicPlayer
 
             return;
         }
-
-
 
         Log.i("Mplayer", "starting music player");
 
@@ -81,56 +77,53 @@ public class MusicPlayer
         handlerThread.start();
         Handler handler = new Handler(handlerThread.getLooper());
 
-        handler.post(new Runnable() {
-            @Override
-            public void run()
+        handler.post(() -> {
+            Log.i("Mplayer", "new thread successfully started");
+
+            synchronized (lock)
             {
-                Log.i("Mplayer", "new thread successfully started");
-
-                synchronized (lock)
+            if (!musicPlayer.isPlaying())
+            {
+                try
                 {
-                if (!musicPlayer.isPlaying())
+                    musicPlayer.prepare();
+                    musicPlayer.start();
+                    isPlaying = true;
+                    Log.i("Mplayer", "playing song");
+                }
+                catch (Exception e)
                 {
-                    try
-                    {
-                        musicPlayer.prepare();
-                        musicPlayer.start();
-                        isPlaying = true;
-                        Log.i("Mplayer", "playing song");
-                    }
-                    catch (Exception e)
-                    {
-                        Log.e("MPlayer E", "error while trying to play song");
-                        Log.e("MPlayer E", Objects.requireNonNull(e.getMessage()));
-                        throw new RuntimeException(e);
-                    }
+                    Log.e("MPlayer E", "error while trying to play song");
+                    Log.e("MPlayer E", Objects.requireNonNull(e.getMessage()));
+                    throw new RuntimeException(e);
                 }
+            }
 
-                else
+            else
+            {
+                try
                 {
-                    try
-                    {
-                        Log.i("Mplayer", "restarting song");
-                        musicPlayer.reset();
-                        musicPlayer.start();
-                    }
-                    catch (Exception e)
-                    {
-                        Log.e("MPlayer E", "error while trying to replay song");
-                        Log.e("MPlayer E", Objects.requireNonNull(e.getMessage()));
-                        throw new RuntimeException(e);
-                    }
+                    Log.i("Mplayer", "restarting song");
+                    musicPlayer.reset();
+                    musicPlayer.start();
                 }
+                catch (Exception e)
+                {
+                    Log.e("MPlayer E", "error while trying to replay song");
+                    Log.e("MPlayer E", Objects.requireNonNull(e.getMessage()));
+                    throw new RuntimeException(e);
                 }
+            }
+            }
 
-            }});
+        });
     }
 
     public void pauseThisSong()
     {
         if (!isPlaying)
         {
-            Log.i("Mplayer", "player empty, nothing to pause");
+            Log.i("Mplayer", "player stopped or empty, nothing to pause");
 
             return;
         }
@@ -167,7 +160,7 @@ public class MusicPlayer
     {
         if (!isPlaying)
         {
-            Log.i("Mplayer", "the player is empty");
+            Log.i("Mplayer", "the player is empty or already stopped");
 
             return;
         }
