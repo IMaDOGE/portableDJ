@@ -1,5 +1,6 @@
 package hu.unideb.inf.mobil2023.projekt2.FileManager;
 
+/*
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -13,7 +14,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
+*/
 
 public class FileManager
 {
