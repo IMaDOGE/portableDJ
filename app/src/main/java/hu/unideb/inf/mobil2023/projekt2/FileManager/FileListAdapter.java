@@ -75,26 +75,18 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.MyView
             MyViewHolder.this.leftButton = FileListItemView.findViewById(R.id.addToLeft);
             MyViewHolder.this.rightButton = FileListItemView.findViewById(R.id.addToRight);
 
-            leftButton.setOnClickListener(new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View v) {
-                    String s = fileNameTextView.getText().toString();
-                    leftSongPlaying = s;
-                    Log.i("FLAdapter", "The following song title was sent to the left side: " + s);
-                    statusTextView.setText(R.string.filelist_added_to_left);
-                }
+            leftButton.setOnClickListener(v -> {
+                String s = fileNameTextView.getText().toString();
+                leftSongPlaying = s;
+                Log.i("FLAdapter", "The following song title was sent to the left side: " + s);
+                statusTextView.setText(R.string.filelist_added_to_left);
             });
 
-            rightButton.setOnClickListener(new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View v) {
-                    String s = fileNameTextView.getText().toString();
-                    rightSongPlaying = s;
-                    Log.i("FLAdapter", "The following song title was sent to the right side: " + s);
-                    statusTextView.setText(R.string.filelist_added_to_right);
-                }
+            rightButton.setOnClickListener(v -> {
+                String s = fileNameTextView.getText().toString();
+                rightSongPlaying = s;
+                Log.i("FLAdapter", "The following song title was sent to the right side: " + s);
+                statusTextView.setText(R.string.filelist_added_to_right);
             });
         }
     }

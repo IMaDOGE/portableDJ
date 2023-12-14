@@ -8,18 +8,17 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.util.Log;
 
-import java.util.Objects;
-
 public class MusicPlayer
 {
     private final AssetManager assetManager;
     private final Object lock = new Object();
+
     private MediaPlayer musicPlayer;
+
     private boolean isPlaying = false;
     private boolean isPaused = false;
 
     private float currentVolume;
-
 
     public MusicPlayer(Context context, float defaultVolume)
     {
@@ -72,7 +71,7 @@ public class MusicPlayer
         catch (Exception e)
         {
             Log.e("MPlayer E", "error while trying to load song");
-            Log.e("MPlayer E", Objects.requireNonNull(e.getMessage()));
+            Log.e("MPlayer E", ""+e.getMessage());
             throw new RuntimeException(e);
         }
 
@@ -99,7 +98,7 @@ public class MusicPlayer
                 catch (Exception e)
                 {
                     Log.e("MPlayer E", "error while trying to play song");
-                    Log.e("MPlayer E", Objects.requireNonNull(e.getMessage()));
+                    Log.e("MPlayer E", "" + e.getMessage());
                     throw new RuntimeException(e);
                 }
             }
@@ -115,7 +114,7 @@ public class MusicPlayer
                 catch (Exception e)
                 {
                     Log.e("MPlayer E", "error while trying to replay song");
-                    Log.e("MPlayer E", Objects.requireNonNull(e.getMessage()));
+                    Log.e("MPlayer E", "" + e.getMessage());
                     throw new RuntimeException(e);
                 }
             }
@@ -147,7 +146,7 @@ public class MusicPlayer
             catch(Exception e)
             {
                 Log.e("MPlayer E", "error while trying to pause song");
-                Log.e("MPlayer E", Objects.requireNonNull(e.getMessage()));
+                Log.e("MPlayer E", ""+ e.getMessage());
                 throw new RuntimeException();
             }
         }
@@ -180,7 +179,7 @@ public class MusicPlayer
         catch (Exception e)
         {
             Log.e("MPlayer E", "error while trying to stop song");
-            Log.e("MPlayer E", Objects.requireNonNull(e.getMessage()));
+            Log.e("MPlayer E", "" + e.getMessage());
             throw new RuntimeException();
         }
     }

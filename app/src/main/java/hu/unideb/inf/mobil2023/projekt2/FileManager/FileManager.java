@@ -1,10 +1,8 @@
 package hu.unideb.inf.mobil2023.projekt2.FileManager;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -21,9 +19,12 @@ public class FileManager
 {
     // TODO: figure out how to load music from "Music" folder
     // feature likely out of scope
-    private final Context context;
 
-    public FileManager(Context context)
+
+
+    //private final Context context;
+
+    /*public FileManager(Context context) // non-functional
     {
         Log.i("FManager", "Starting FManager...");
 
@@ -44,14 +45,11 @@ public class FileManager
                 @SuppressLint("Range") String title = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE));
                 @SuppressLint("Range") String data = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
 
-                // Fájl neve
                 @SuppressLint("Range") String fileName = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME));
-                // Fájl elérési útja
+
                 @SuppressLint("Range") String filePath = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
 
                 Log.i("Music", "File Name: " + fileName + ", File Path: " + filePath);
-
-                // Kezelje a zenefájl információkat itt
             }
             cursor.close();
         }
@@ -74,9 +72,9 @@ public class FileManager
         {
             Log.e("FManager", "Scoped Storage API doesn't seem to function correctly.");
         }*/
-    }
+    //}
 
-    private String readFile(String fileName)
+    /*private String readFile(String fileName) // read test, unnecessary
     {
         String s = "Attempting to read file: " + fileName;
         String line;
@@ -105,9 +103,9 @@ public class FileManager
         }
 
         return sb.toString();
-    }
+    }*/
 
-    private void writeFile(String fileName, String content)
+    /*private void writeFile(String fileName, String content) // write test, unnecessary
     {
         String s = "Attempting to create file: " + fileName;
         Log.i("FManager", s);
@@ -126,6 +124,5 @@ public class FileManager
             Log.e("FManager", "Error trying to write file.");
             Log.e("FManager", "" + e.getMessage());
         }
-    }
-    // This should get a list of files in the assets folder
+    }*/
 }

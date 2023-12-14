@@ -26,8 +26,7 @@ public class MainActivity extends AppCompatActivity
     private MusicPlayer effectPlayer;
     private TextView titleLeft;
     private TextView titleRight;
-    //private ImageView turntableLeft;
-    //private ImageView turntableRight;
+
     private SeekBar volumeControl;
     private final int SEEKBAR_SNAP_SENSITIVITY_SIDES = 8;
     private final int SEEKBAR_SNAP_SENSITIVITY_MIDDLE = 14;

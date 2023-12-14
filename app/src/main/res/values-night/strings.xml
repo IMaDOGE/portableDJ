@@ -1,11 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Portable DJ</string>
     <string name="paused_player">paused</string>
-    <string name="started_player">"playing: "</string>
+    <string name="started_player">"playing"</string>
     <string name="stopped_player">stopped</string>
     <string name="default_title">no song selected yet</string>
     <string name="play_button_text">play</string>
     <string name="pause_button_text">pause</string>
+    <string name="resume_button_text">resume</string>
     <string name="stop_button_text">stop</string>
     <string name="file_browser_button_text">browse</string>
+    <string name="left_turntable_description">left turntable</string>
+    <string name="right_turntable_description">right turntable</string>
+    <string name="add_left_button_text">Left</string>
+    <string name="add_right_button_text">Right</string>
+    <string name="add_title_default_text">title</string>
+    <string name="exit_button_text">Go back</string>
+    <string name="filelist_title">Title:</string>
+    <string name="filelist_choose_songs">Choose songs</string>
+    <string name="filelist_add_to">Add to:</string>
+    <string name="filelist_added_to_left">added to left!</string>
+    <string name="filelist_added_to_right">added to right!</string>
 </resources>
