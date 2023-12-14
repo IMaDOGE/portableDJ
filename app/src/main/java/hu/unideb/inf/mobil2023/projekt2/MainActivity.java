@@ -179,8 +179,6 @@ public class MainActivity extends AppCompatActivity
                     return false;
                 }
         );
-
-        // FileManager FManager = new FileManager(this);
     }
 
     public void leftPlayPressed(View view)
