@@ -18,19 +18,22 @@ public class MusicPlayer
     private boolean isPlaying = false;
     private boolean isPaused = false;
 
+    private float currentVolume;
 
-    public MusicPlayer(Context context)
+
+    public MusicPlayer(Context context, float defaultVolume)
     {
         Log.i("Mplayer", "creating new music player instance");
 
         this.assetManager = context.getAssets();
+        this.currentVolume = defaultVolume;
     }
 
     public void setMusicVolume(int value)
     {
-        float musicVolume = (float) value / 100;
+        this.currentVolume = (float) value / 100;
 
-        musicPlayer.setVolume(musicVolume, musicVolume);
+        musicPlayer.setVolume(this.currentVolume, this.currentVolume);
     }
 
     public void playThisSong(String fileName)
@@ -56,6 +59,8 @@ public class MusicPlayer
         Log.i("Mplayer", "starting music player");
 
         musicPlayer = new MediaPlayer();
+
+        musicPlayer.setVolume(this.currentVolume, this.currentVolume); // to retain volume after changing song
 
         try
         {

@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity
     private MusicPlayer effectPlayer;
     private TextView titleLeft;
     private TextView titleRight;
-    private ImageView turntableLeft;
-    private ImageView turntableRight;
+    //private ImageView turntableLeft;
+    //private ImageView turntableRight;
     private SeekBar volumeControl;
     private final int SEEKBAR_SNAP_SENSITIVITY_SIDES = 8;
     private final int SEEKBAR_SNAP_SENSITIVITY_MIDDLE = 14;
@@ -41,19 +41,21 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); // force landscape mode
         setContentView(R.layout.activity_main);
 
-        musicPlayerLeft = new MusicPlayer(this);
-        musicPlayerRight = new MusicPlayer(this);
-        effectPlayer = new MusicPlayer(this);
+        musicPlayerLeft = new MusicPlayer(this, 0.5f);
+        musicPlayerRight = new MusicPlayer(this, 0.5f);
+        effectPlayer = new MusicPlayer(this, 1.0f);
+
+        ImageView turntableLeft = findViewById(R.id.turntableLeft);
+        ImageView turntableRight = findViewById(R.id.turntableRight);
 
         titleLeft = findViewById(R.id.songTitleLeft);
         titleRight = findViewById(R.id.songTitleRight);
-        turntableLeft = findViewById(R.id.turntableLeft);
-        turntableRight = findViewById(R.id.turntableRight);
-        volumeControl = findViewById(R.id.volumeSeekBar);
 
+        volumeControl = findViewById(R.id.volumeSeekBar);
         volumeControl.setEnabled(false);
 
         volumeControl.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
@@ -178,31 +180,6 @@ public class MainActivity extends AppCompatActivity
                     return false;
                 }
         );
-
-        /*turntableLeft.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event)
-            {
-                switch (event.getAction())
-                {
-                    case (MotionEvent.ACTION_DOWN):
-                    {
-                        Log.i("turntabletest", "started to hold the image");
-
-                        return true;
-                    }
-                    case (MotionEvent.ACTION_UP):
-                    {
-                        Log.i("turntabletest", "stopped holding");
-
-                        return true;
-                    }
-                    default:
-                        return false;
-                }
-            }
-        });*/
-
 
         // FileManager FManager = new FileManager(this);
     }
